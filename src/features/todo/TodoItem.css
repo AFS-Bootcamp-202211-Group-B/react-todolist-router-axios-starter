@@ -23,4 +23,5 @@
   display: flex;
   margin-left: auto;
   justify-content: flex-end;
+  cursor: pointer;
 }

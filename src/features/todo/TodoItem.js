@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import todoSlice, { toggleTodo, deleteTodo, editTodo } from "./todoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTodo, deleteTodo, editTodo } from "./todoSlice";
 import { DeleteOutlined,EditOutlined} from '@ant-design/icons';
 import { Button,Modal,Input,message, Popconfirm} from 'antd';
 import { putTodos, deleteTodos, putTodoText } from "../../api/todos";
@@ -17,6 +17,7 @@ const TodoItem = (props) => {
       dispatch(editTodo(newTodo));
     }, [dispatch]);
     setIsModalOpen(false);
+    message.success('Updated!');
   };
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -27,13 +28,14 @@ const TodoItem = (props) => {
 
   
   const dispatch = useDispatch();
-
+  const todos = useSelector((state) => state.todoList);
   const onToggle = () => {
     // dispatch(toggleTodo(todo.id));
     putTodos(todo).then((response)=>{
       dispatch(toggleTodo(todo.id));
     }, [dispatch]);
     
+    message.success('Updated the todo status!');
   };
 
   const onDelete = (event) => {
@@ -57,9 +59,9 @@ const TodoItem = (props) => {
 
   return (
     <div className="box">
-      <span className={todo.done ? "done" : ""} onClick={onToggle} >{todo.text}</span>
+      <span className={todo.done ? "done" : ""} onClick={onToggle} style={{cursor: "pointer"}}>{todo.text}</span>
       <span className="trigger-button">
-        <Button icon={<EditOutlined />}onClick={onEdit} style={{marginRight:"10px"}}/>
+        <Button icon={<EditOutlined />}onClick={onEdit} title="Edit" style={{marginRight:"10px"}}/>
         <Popconfirm
           title="Are you sure to delete this todo item?"
           onConfirm={confirm}
@@ -67,7 +69,7 @@ const TodoItem = (props) => {
           okText="Yes"
           cancelText="No"
           >   
-          <Button danger icon={<DeleteOutlined />}/>
+          <Button danger title="Delete" icon={<DeleteOutlined />}/>
         </Popconfirm>
         
         

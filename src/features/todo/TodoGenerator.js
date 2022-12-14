@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "./todoSlice";
 import {postTodos} from "../../api/todos";
@@ -33,7 +33,7 @@ const TodoGenerator = () => {
         size="middle"
         style={{ width: 304 }}
       />
-      <Button onClick={onAdd} type="primary" className="add-button">add</Button>
+      <Button onClick={onAdd} type="primary" style={{background:"#2ecc40",marginLeft: "20px"}}>add</Button>
 
 
     </>
