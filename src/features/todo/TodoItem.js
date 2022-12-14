@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { toggleTodo, deleteTodo } from "./todoSlice";
-import { putTodos } from "../../api/todos";
+import { putTodos, deleteTodos } from "../../api/todos";
 import { addTodo } from "./todoSlice";
 import "./TodoItem.css";
 
@@ -18,7 +18,9 @@ const TodoItem = (props) => {
 
   const onDelete = (event) => {
     event.stopPropagation();
-    dispatch(deleteTodo(todo.id));
+    deleteTodos(todo.id).then((response) => {
+      dispatch(deleteTodo(response.data.id));
+    })
   };
 
   return (
