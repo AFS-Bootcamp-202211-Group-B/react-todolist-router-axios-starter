@@ -7,7 +7,6 @@ import { addTodos } from "./todoSlice";
 
 
 const TodoList = () => {
-  // get the data from store
   const todos = useSelector((state) => {
     return state.todoList;
   });

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addTodo } from "./todoSlice";
 import {postTodos} from "../../api/todos";
 import { Button, Input } from 'antd';
-import "./TodoGenerator.css";
+
 const TodoGenerator = () => {
   const dispatch = useDispatch();
   const [todoText, setTodoText] = useState("");
@@ -14,8 +14,6 @@ const TodoGenerator = () => {
 
   const onAdd = () => {
     const todo = { text: todoText, done: false };
-    //Todo for axios
-    // dispatch(addTodo(todo));
     postTodos(todo.text).then((response)=>{
     dispatch(addTodo(response.data));
       

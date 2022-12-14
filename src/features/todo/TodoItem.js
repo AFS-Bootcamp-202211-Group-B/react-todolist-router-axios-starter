@@ -30,7 +30,6 @@ const TodoItem = (props) => {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todoList);
   const onToggle = () => {
-    // dispatch(toggleTodo(todo.id));
     putTodos(todo).then((response)=>{
       dispatch(toggleTodo(todo.id));
     }, [dispatch]);
@@ -40,7 +39,6 @@ const TodoItem = (props) => {
 
   const onDelete = (event) => {
     event.stopPropagation();
-    // dispatch(deleteTodo(todo.id));
     deleteTodos(todo.id).then((response)=>{
       dispatch(deleteTodo(todo.id));
     }, [dispatch]);
