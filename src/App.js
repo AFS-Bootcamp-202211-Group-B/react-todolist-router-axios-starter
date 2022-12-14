@@ -10,13 +10,12 @@ function App() {
     <div className="App">
 
       <Routes>
-      <Route path="/" element={<Layout />} >
-        <Route index element={<TodoList />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-        <Route path="/done" element={<DoneListPage />} />
-      </Route>
-      
+        <Route path="/" element={<Layout />} >
+          <Route index element={<TodoList />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/done" element={<DoneListPage />} />
+        </Route>
       </Routes>
     </div>
   );

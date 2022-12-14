@@ -18,6 +18,11 @@ const items = [
         key: 'DonePage',
         icon: <Link to="/done" />,
     },
+    {
+        label: 'Not Found Page',
+        key: 'NotFoundPage',
+        icon: <Link to="*" />,
+    },
 ]
 export default function Layout() {
     const [current, setCurrent] = useState('homepage');
@@ -26,12 +31,6 @@ export default function Layout() {
     };
     return (
         <div>
-            {/* <nav>
-                <Link to="/">Homepage</Link>
-                <Link to="/about">About Page</Link>
-                <Link to="/done">Done Page</Link>
-            </nav>
-            */}
             <Menu theme="dark" onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
             <div className="content">
                 <Outlet />
