@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import todoSlice, { toggleTodo, deleteTodo, editTodo } from "./todoSlice";
 import { DeleteOutlined,EditOutlined} from '@ant-design/icons';
-import { Button,Modal,Input } from 'antd';
+import { Button,Modal,Input,message, Popconfirm} from 'antd';
 import { putTodos, deleteTodos, putTodoText } from "../../api/todos";
 import { useState } from "react";
 import "./TodoItem.css";
@@ -46,15 +46,30 @@ const TodoItem = (props) => {
 
   const onEdit = () => {
     setIsModalOpen(true);
-    
   }
+  const confirm = (e) => {
+    message.success('Deleted!');
+    onDelete(e);
+  };
+  const cancel = (e) => {
+    message.error('Be careful to click delete button!');
+  };
 
   return (
     <div className="box">
       <span className={todo.done ? "done" : ""} onClick={onToggle} >{todo.text}</span>
       <span className="trigger-button">
         <Button icon={<EditOutlined />}onClick={onEdit} style={{marginRight:"10px"}}/>
-        <Button danger icon={<DeleteOutlined />}onClick={onDelete}/>
+        <Popconfirm
+          title="Are you sure to delete this todo item?"
+          onConfirm={confirm}
+          onCancel={cancel}
+          okText="Yes"
+          cancelText="No"
+          >   
+          <Button danger icon={<DeleteOutlined />}/>
+        </Popconfirm>
+        
         
       </span>
       <Modal title="Update Todo item" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
