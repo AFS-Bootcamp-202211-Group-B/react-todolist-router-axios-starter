@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import TodoGenerator from "./TodoGenerator";
 import TodoGroup from "./TodoGroup";
-
 const TodoList = () => {
   // get the data from store
   const todos = useSelector((state) => {
@@ -12,6 +11,8 @@ const TodoList = () => {
     <>
       <TodoGroup todos={todos} />
       <TodoGenerator />
+      <br/>
+
     </>
   );
 };
