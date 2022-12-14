@@ -13,12 +13,15 @@ export const postTodos = (todo) => {
 };
 
 export const updateTodoApi = (todo) => {
-    return api.put("/todos/" + todo.id, todo ); 
+    return api.put("/todos/" + todo.id, { done: !todo.done } ); 
+};
+
+export const updateTodoTextApi = (todo) => {
+    return api.put("/todos/" + todo.id, { text: todo.text } ); 
 };
 
 export const deleteTodoApi = (id) => {
     return api.delete("/todos/" + id); 
 };
-
 
 // step1: postTodo({todo})

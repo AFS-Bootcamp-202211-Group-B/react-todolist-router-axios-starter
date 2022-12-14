@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { toggleTodo, deleteTodo } from "./todoSlice";
 import { updateTodoApi,deleteTodoApi } from "../../api/todos";
 import "./TodoItem.css";
+import  MessageBox  from './MessageBox';
+
 
 const TodoItem = (props) => {
   const { todo } = props;
@@ -25,11 +27,15 @@ const TodoItem = (props) => {
   };
 
   return (
-    <div className="box" onClick={onToggle}>
-      <span className={todo.done ? "done" : ""}>{todo.text}</span>
+    <div className="box">
+      <span  onClick={onToggle} className={todo.done ? "done" : ""}>{todo.text}</span>
       <span className="times" onClick={onDelete}>
         &times;
       </span>
+      <span>
+      <MessageBox item={todo}/>
+      </span>
+
     </div>
   );
 };
