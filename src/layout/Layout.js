@@ -2,8 +2,10 @@ import React from 'react'
 import { Link, Outlet } from "react-router-dom"
 
 //ant design
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+//---
+
+
 const items = [
     {
         label: 'Home',
@@ -26,12 +28,11 @@ const items = [
         icon: <Link to='/adsadas'/>,
     }
 ];
-//---
 
 export default function Layout() {
     return (
         <div>
-            <Menu selectedKeys={['home']} mode="horizontal" items={items} />
+            <Menu selectedKeys={[]} mode="horizontal" items={items} />
             <Outlet />
         </div>
     )

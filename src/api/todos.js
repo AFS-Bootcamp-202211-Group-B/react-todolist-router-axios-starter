@@ -12,5 +12,7 @@ const deleteTodo = (todoId) => api.delete(`/todos/${todoId}`)
 
 const toggleTodo = (todoObj) => api.put(`/todos/${todoObj.id}`, { done: !todoObj.done })
 
+const updateTodoText = (todoObj) => api.put(`/todos/${todoObj.id}`, { text: todoObj.text })
 
-export { getAllTodos, createTodo, deleteTodo, toggleTodo }
+
+export { getAllTodos, createTodo, deleteTodo, toggleTodo, updateTodoText }
