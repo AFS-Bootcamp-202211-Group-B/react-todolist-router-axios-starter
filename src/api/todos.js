@@ -7,3 +7,11 @@ const api = axios.create({
 export const getTodos = () => {
     return api.get("/todos");
 };
+
+export const postTodos = (text) => {
+    return api.post("/todos", {
+        id: Date.now(),
+        text: text,
+        done: false
+    })
+}

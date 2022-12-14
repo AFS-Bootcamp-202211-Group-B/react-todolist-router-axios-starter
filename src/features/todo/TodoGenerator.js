@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "./todoSlice";
-
+import {postTodos} from "../../api/todos";
 const TodoGenerator = () => {
   const dispatch = useDispatch();
   const [todoText, setTodoText] = useState("");
@@ -12,7 +12,13 @@ const TodoGenerator = () => {
 
   const onAdd = () => {
     const todo = { text: todoText, done: false };
-    dispatch(addTodo(todo));
+    //Todo for axios
+    // dispatch(addTodo(todo));
+    postTodos(todo.text).then((response)=>{
+    dispatch(addTodo(response.data));
+      
+    }, [dispatch]);
+  
     setTodoText("");
   };
 
