@@ -24,3 +24,9 @@ export const putTodos = (todo) => {
 export const deleteTodos = (id) => {
     return api.delete(`/todos/${id}`);
 }; 
+
+export const putTodoText = (todo) => {
+    return api.put(`/todos/${todo.id}`,{
+        text: todo.text
+    })
+}
