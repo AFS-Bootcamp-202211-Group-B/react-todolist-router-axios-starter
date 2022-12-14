@@ -8,3 +8,17 @@ export const getTodos = () => {
     return api.get("/todos"); 
 };
 
+export const postTodos = (todo) => {
+    return api.post("/todos", todo); 
+};
+
+export const updateTodoApi = (todo) => {
+    return api.put("/todos/" + todo.id, todo ); 
+};
+
+export const deleteTodoApi = (id) => {
+    return api.delete("/todos/" + id); 
+};
+
+
+// step1: postTodo({todo})

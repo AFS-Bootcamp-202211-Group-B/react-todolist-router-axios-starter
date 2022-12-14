@@ -20,6 +20,7 @@ const TodoList = () => {
 
   return (
     <>
+      <h1>Todo List</h1>
       <TodoGroup todos={todos} />
       <TodoGenerator />
     </>
