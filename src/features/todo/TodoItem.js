@@ -1,5 +1,7 @@
 import { useDispatch } from "react-redux";
 import { toggleTodo, deleteTodo, addTodo } from "./todoSlice";
+import { DeleteOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 import { putTodos, deleteTodos } from "../../api/todos";
 import "./TodoItem.css";
 
@@ -26,9 +28,7 @@ const TodoItem = (props) => {
   return (
     <div className="box" onClick={onToggle}>
       <span className={todo.done ? "done" : ""}>{todo.text}</span>
-      <span className="times" onClick={onDelete}>
-        &times;
-      </span>
+      <Button icon={<DeleteOutlined />}onClick={onDelete}/>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { getTodos } from "../../api/todos";
 import TodoGenerator from "./TodoGenerator";
 import TodoGroup from "./TodoGroup";
 import { addTodos } from "./todoSlice";
+import {List, Divider} from "antd";
 
 const TodoList = () => {
   // get the data from store
@@ -20,7 +21,8 @@ const TodoList = () => {
 
   return (
     <>
-      <TodoGroup todos={todos} />
+      <h1>Todo List</h1>
+        <TodoGroup todos={todos} />
       <TodoGenerator />
     </>
   );
