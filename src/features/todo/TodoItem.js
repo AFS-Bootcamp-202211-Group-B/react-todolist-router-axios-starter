@@ -53,7 +53,7 @@ const TodoItem = (props) => {
     <div className="box">
       <span className={todo.done ? "done" : ""} onClick={onToggle} >{todo.text}</span>
       <span className="trigger-button">
-        <Button icon={<EditOutlined />}onClick={onEdit}/>
+        <Button icon={<EditOutlined />}onClick={onEdit} style={{marginRight:"10px"}}/>
         <Button danger icon={<DeleteOutlined />}onClick={onDelete}/>
         
       </span>

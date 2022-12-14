@@ -32,7 +32,7 @@ const TodoGenerator = () => {
         size="middle"
         style={{ width: 304 }}
       />
-      <Button onClick={onAdd}>add</Button>
+      <Button onClick={onAdd} type="primary" style={{ background: "#2ecc40", marginLeft:"20px"}}>add</Button>
 
 
     </>

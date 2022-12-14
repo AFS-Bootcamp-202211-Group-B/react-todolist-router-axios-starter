@@ -1,9 +1,11 @@
-import DoneItem from "./DoneItem";
-
-const DoneGroup = (props) => {
-  return props.todos.map((todo) => {
-    return <DoneItem todo={todo} key={todo.id} />;
-  });
-};
-
-export default DoneGroup;
+import React from 'react';
+import { useSelector } from "react-redux";
+import DoneItem from './DoneItem';
+export default function DoneList() {
+    const todos = useSelector((state) => state.todoList);
+        return (
+            todos.filter(item => item.done).map((done,index)=> {
+            return <DoneItem key={index} done={done}/>;
+        }));
+      
+}

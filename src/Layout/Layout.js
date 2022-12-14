@@ -24,30 +24,12 @@ export default function Layout() {
     ]
   return (
     <div>
-        <div className="menu">
-            
-        <Button
-            type="primary"
-            onClick={toggleCollapsed}
-            style={{
-            marginBottom: 16,
-              
-            }}
-            className="button"
-        >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        </Button>
+
         <Menu
-        mode="inline"
+        mode="horizontal"
         items={items}
-        inlineCollapsed={collapsed}
-        />
-            {/* <nav>
-                <Link to="/">Homepage</Link>
-                <Link to="/about">About Page</Link>
-                <Link to="/done">Done Page</Link>
-            </nav> */}
-        </div>
+         style={{textAlign:"center"}}/>
+
         <div className='content'>
             <Outlet />
         </div>

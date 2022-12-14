@@ -1,10 +1,13 @@
 import React from 'react';
 import { useSelector } from "react-redux";
-import DoneItem from '../features/todo/DoneItem';
+import DoneGroup from '../features/todo/DoneGroup';
 export default function DoneList() {
-    const todos = useSelector((state) => state.todoList);
-        return todos.filter(item => item.done).map((done,index)=> {
-            return <DoneItem key={index} done={done}/>;
-        });
+    
+        return (
+           <>
+           <h2>Done List</h2>
+           <DoneGroup/>
+           </>
+        );
       
 }
