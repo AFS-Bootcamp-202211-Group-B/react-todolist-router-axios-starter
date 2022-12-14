@@ -52,8 +52,11 @@ const TodoItem = (props) => {
   return (
     <div className="box">
       <span className={todo.done ? "done" : ""} onClick={onToggle} >{todo.text}</span>
-      <Button icon={<DeleteOutlined />}onClick={onDelete}/>
-      <Button icon={<EditOutlined />}onClick={onEdit}/>
+      <span className="trigger-button">
+        <Button icon={<EditOutlined />}onClick={onEdit}/>
+        <Button danger icon={<DeleteOutlined />}onClick={onDelete}/>
+        
+      </span>
       <Modal title="Update Todo item" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <Input
           placeholder="update your todo"

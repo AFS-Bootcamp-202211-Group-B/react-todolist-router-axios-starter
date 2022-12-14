@@ -8,7 +8,17 @@
 
 .box {
   border: 1px solid #ccc;
-  width: 30%;
+  width: 50%;
   margin: 10px auto;
   padding: 10px 0;
+  padding-left: 10px;
+  
+}
+
+.trigger-button{
+
+  text-align: right;
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
 }
