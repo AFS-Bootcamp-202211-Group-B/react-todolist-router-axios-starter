@@ -1,7 +1,9 @@
 import { useDispatch } from "react-redux";
-import { toggleTodo, deleteTodo } from "./todoSlice";
+import { toggleTodo, deleteTodo, updateTodosText } from "./todoSlice";
 import { putTodos, deleteTodos } from "../../api/todos";
 import "./TodoItem.css";
+import { Typography } from 'antd';
+const { Paragraph } = Typography;
 
 const TodoItem = (props) => {
   const { todo } = props;
@@ -9,10 +11,9 @@ const TodoItem = (props) => {
 
   const onToggle = () => {
     const content = {...todo, done: !todo.done }
-    const id = todo.id
-    putTodos(id, content).then((response) => {
+    putTodos(todo.id, content).then((response) => {
       // dispatch(toggleTodo(response.data.id));
-      dispatch(toggleTodo(response.data));
+      dispatch(toggleTodo(response.data.id));
     })
   };
 
@@ -23,13 +24,30 @@ const TodoItem = (props) => {
     })
   };
 
+  const onEdit = (event) => {
+    const content = {...todo, text: event}
+    putTodos(todo.id, content).then((response) => {
+      dispatch(updateTodosText(response.data));
+    })
+  };
+
+
   return (
-    <div className="box" onClick={onToggle}>
-      <span className={todo.done ? "done" : ""}>{todo.text}</span>
-      <span className="times" onClick={onDelete}>
-        &times;
-      </span>
-      
+    <div className="box">
+      <Paragraph
+        editable={{
+          onChange: onEdit,
+          text: todo.text
+        }}
+      >
+        <span onClick={onToggle} className={todo.done ? "done" : ""}>
+          {todo.text}
+        </span>
+
+        <span className="times" onClick={onDelete}>
+          &times;
+        </span>
+      </Paragraph>
     </div>
   );
 };
