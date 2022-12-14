@@ -2,8 +2,10 @@ import { useDispatch } from "react-redux";
 import { toggleTodo, deleteTodo, updateTodosText } from "./todoSlice";
 import { putTodos, deleteTodos } from "../../api/todos";
 import "./TodoItem.css";
-import { Typography } from 'antd';
-const { Paragraph } = Typography;
+import { Button, Typography } from 'antd';
+import { CloseOutlined } from '@ant-design/icons'
+
+
 
 const TodoItem = (props) => {
   const { todo } = props;
@@ -31,7 +33,7 @@ const TodoItem = (props) => {
     })
   };
 
-
+  const { Paragraph } = Typography;
   return (
     <div className="box">
       <Paragraph
@@ -44,9 +46,8 @@ const TodoItem = (props) => {
           {todo.text}
         </span>
 
-        <span className="times" onClick={onDelete}>
-          &times;
-        </span>
+        <Button onClick={onDelete} type="danger" style={{color:'red'}} icon={<CloseOutlined />} size="small"></Button>
+        
       </Paragraph>
     </div>
   );
