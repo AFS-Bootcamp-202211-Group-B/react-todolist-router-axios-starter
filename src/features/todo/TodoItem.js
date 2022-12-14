@@ -2,25 +2,34 @@ import { useDispatch } from "react-redux";
 import { toggleTodo, deleteTodo } from "./todoSlice";
 import "./TodoItem.css";
 import TodoGroup from "./TodoGroup";
+import { putTodo , deletedo } from "../../api/todos";
 
 const TodoItem = (props) => {
   const { todo } = props;
   const dispatch = useDispatch();
 
   const onToggle = () => {
+    var todoObj = { ...todo, done: !todo.done};
+    putTodo(todo.id,todoObj)
+    .then((response) => {
     dispatch(toggleTodo(todo.id));
+    })
   };
 
   const onDelete = (event) => {
     event.stopPropagation();
-    dispatch(deleteTodo(todo.id));
+    deletedo(todo.id)
+    .then((response)=>{
+      dispatch(deleteTodo(todo.id));
+    })
+    
   };
 
   if (props.done)
   {
     return(
       <div className = "box">
-        <span className="done">{todo.text}</span>
+        {todo.text}
       </div>
     );
   }

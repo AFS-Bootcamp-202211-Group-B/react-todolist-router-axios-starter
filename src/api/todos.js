@@ -10,6 +10,20 @@ export const getTodos =() => {
 }
 
 
+export const postTodos =(todo) => {
+    return api.post('/todos',todo);
+}
+
+export const putTodo =(id ,done ) => {
+    return api.put('/todos/'+id ,done)
+    // .then(response => );
+}
+export const deletedo = (id) => {
+    return api.delete("/todos/" + id);
+}
+
+
+
 
 // export default function Layout()
 // {

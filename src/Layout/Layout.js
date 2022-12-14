@@ -1,5 +1,6 @@
 import React  from "react";
-import { Link, Outlet  } from "react-router-dom";
+import { Link, Outlet, NavLink   } from "react-router-dom";
+import {Menu } from 'antd';
 
 
 
@@ -7,11 +8,27 @@ export default function Layout()
 {
     return(
         <div>
-            <nav>
-                <Link to="/"> Homepage</Link>
-                <Link to="/about"> About</Link>
-                <Link to="/done"> Done Page</Link>
-            </nav>
+            <Menu
+                        mode="inline"
+                        style={{ height: "100%", borderRight: 0 }}
+                    >
+                        <Menu.Item key="/">
+                            <NavLink to="/" className="nav-text">
+                            Homepage
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="/about">
+                            <NavLink to="/about" className="nav-text">
+                            About
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="/done">
+                            <NavLink to="/done" className="nav-text">
+                            Done Page
+                            </NavLink>
+                        </Menu.Item>
+                    </Menu>
+            
             <Outlet />
         </div>
     );
