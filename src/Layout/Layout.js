@@ -9,7 +9,9 @@ export default function Layout() {
             <Link to="/about">About Page</Link>
             <Link to="/done">Done Page</Link>
         </nav>
-        <Outlet />
+        <div className='content'>
+            <Outlet />
+        </div>
     </div>
   )
 }
