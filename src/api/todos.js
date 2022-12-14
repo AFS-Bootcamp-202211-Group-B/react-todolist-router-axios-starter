@@ -12,5 +12,9 @@ const postTodos = (data) => {
     return api.post("/todos", data);
 };
 
+const putTodos = (id, data) => {
+    return api.put(`/todos/${id}`, data);
+};
 
-export {getTodos, postTodos}
+
+export {getTodos, postTodos, putTodos}
