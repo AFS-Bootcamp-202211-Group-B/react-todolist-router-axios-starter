@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { createTodo } from "../../api/todos";
 import { addTodo } from "./todoSlice";
 
 const TodoGenerator = () => {
@@ -8,13 +9,17 @@ const TodoGenerator = () => {
 
   const onTextChange = (event) => {
     setTodoText(event.target.value);
-  };
+  }
 
   const onAdd = () => {
-    const todo = { text: todoText, done: false };
-    dispatch(addTodo(todo));
-    setTodoText("");
-  };
+    const newTodoObj = { text: todoText, done: false };
+    createTodo(newTodoObj)
+      .then(() => {
+        dispatch(addTodo(newTodoObj))
+        setTodoText("")
+      })
+      .catch(() => alert('fail to create new todo item'))
+  }
 
   return (
     <>

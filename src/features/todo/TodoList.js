@@ -6,11 +6,8 @@ import { useEffect } from "react";
 import { setTodo } from "./todoSlice";
 
 const TodoList = () => {
-  // get the data from store
   const todos = useSelector(state => state.todoList)
   const dispatch = useDispatch()
-
-
   useEffect(() => {
     getAllTodos()
       .then(response => {
@@ -18,8 +15,6 @@ const TodoList = () => {
       })
       .catch(e => console.log(e))
   }, [])
-
-
   return (
     <>
       <TodoGroup todos={todos} />

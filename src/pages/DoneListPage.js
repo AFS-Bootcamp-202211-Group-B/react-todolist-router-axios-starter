@@ -9,7 +9,7 @@ export default function DoneListPage() {
     });
     return (
         <>
-            <div onClickCapture={e => { alert("dont click on me, modify todo item at home page"); e.stopPropagation() }}>
+            <div onClickCapture={e => { alert("dont click on me, modify todo items at home page"); e.stopPropagation() }}>
                 {doneTodos.map((todo) => { return <TodoItem todo={todo} key={todo.id} /> })}
             </div>
             <Link to='/'>take me back to home</Link>
