@@ -10,8 +10,13 @@ export const getTodos = () => {
 
 export const postTodos = (text) => {
     return api.post("/todos", {
-        id: Date.now(),
         text: text,
         done: false
+    })
+};
+
+export const putTodos = (todo) => {
+    return api.put(`/todos/${todo.id}`,{
+        done: !todo.done
     })
 }
