@@ -14,8 +14,8 @@ const TodoGenerator = () => {
   const onAdd = () => {
     const newTodoObj = { text: todoText, done: false };
     createTodo(newTodoObj)
-      .then(() => {
-        dispatch(addTodo(newTodoObj))
+      .then((response) => {
+        dispatch(addTodo(response.data))
         setTodoText("")
       })
       .catch(() => alert('fail to create new todo item'))
