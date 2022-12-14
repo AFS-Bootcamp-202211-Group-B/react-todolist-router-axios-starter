@@ -18,7 +18,14 @@ export default function DonePage()
     const doneTodos =  todos.filter(todo => todo.done);
     return doneTodos.map((todo)=> {
 
-        return <TodoItem todo ={todo} key={todo.id} />
+        return (
+            <div>
+
+              <div className="box" key={todo.id}>
+                <span>{todo.text}</span>
+              </div>
+            </div>
+          );
     });
 
 

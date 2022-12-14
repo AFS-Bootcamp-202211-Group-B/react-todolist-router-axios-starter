@@ -29,14 +29,17 @@ const TodoGenerator = () => {
 
   return (
     <>
+
       <Input 
-      placeholder="input your todo"
+        placeholder="input your todo"
         type="text"
         name="todo"
+        size="large"
+        style={{ width: 400 }}
         value={todoText}
         onChange={onTextChange} />
 
-      <Button type="dashed" danger onClick={onAdd}>add</Button>
+      <Button type="primary" onClick={onAdd}>add</Button>
     </>
   );
 };

@@ -1,18 +1,61 @@
 import { useDispatch } from "react-redux";
-import { toggleTodo, deleteTodo } from "./todoSlice";
+import { toggleTodo, deleteTodo,putTestUpdate } from "./todoSlice";
 import "./TodoItem.css";
 import TodoGroup from "./TodoGroup";
-import { putTodo , deletedo } from "../../api/todos";
+import { putTodo , deletedo , putText} from "../../api/todos";
+import { useState ,useEffect} from "react";
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { Button, Modal, Space ,Input, Collapse } from 'antd';
+import { useRef } from "react";
+import { SearchOutlined } from '@ant-design/icons';
 
 const TodoItem = (props) => {
   const { todo } = props;
   const dispatch = useDispatch();
+  const { confirm } = Modal;
+  const [message, setMessage] = useState("");
+  const inputRef = useRef(null);
+
+
+//   useEffect(() => {
+//     setMessage(inputRef.current.value);
+// }, []);
+  
+    useEffect(() => {
+      setMessage(inputRef);
+    }, []);
+
+  function handleClick() {
+    setMessage(inputRef.current.value);
+  }
+
+  const showConfirm = () => {
+    confirm({
+      title: 'Do you Want to update this item?',
+      icon: <ExclamationCircleFilled />,
+      // content: <Input defaultValue = {todo.text} onChange={handleChange}  id="message" value={message}/>,
+      content:       <input
+                        ref={inputRef}
+                        type="text"
+                        defaultValue={todo.text}
+                      />,
+      onOk() {
+        handleClick();
+        handleOk();
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  };
+
+
 
   const onToggle = () => {
     var todoObj = { ...todo, done: !todo.done};
     putTodo(todo.id,todoObj)
     .then((response) => {
-    dispatch(toggleTodo(todo.id));
+    dispatch(toggleTodo(response.data.id));
     })
   };
 
@@ -20,11 +63,21 @@ const TodoItem = (props) => {
     event.stopPropagation();
     deletedo(todo.id)
     .then((response)=>{
-      dispatch(deleteTodo(todo.id));
+      dispatch(deleteTodo(response.data.id));
     })
-    
   };
 
+  const handleOk = () => {
+    
+    const changedTodo = { ...todo, text: message };
+    console.log(changedTodo);
+    putText(todo.id, changedTodo)
+    .then((response) => {
+      console.log(response);
+      dispatch(putTestUpdate(response.data));
+    });
+  };
+  
   if (props.done)
   {
     return(
@@ -35,12 +88,15 @@ const TodoItem = (props) => {
   }
 
   return (
-    <div className="box" onClick={onToggle}>
-      <span className={todo.done ? "done" : ""}>{todo.text}</span>
-      <span className="times" onClick={onDelete}>
-        &times;
-      </span>
+    <div className="box"    >
+      <span  className={todo.done ? "done" : ""} onClick={onToggle} >{todo.text}</span>
+      <Space wrap>
+      <Button onClick={onDelete}    type="primary" danger >Delete</Button>
+      <Button onClick={showConfirm} type="dashed" icon={<SearchOutlined />}></Button>
+
+      </Space>
     </div>
+    
   );
 };
 

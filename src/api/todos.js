@@ -22,6 +22,12 @@ export const deletedo = (id) => {
     return api.delete("/todos/" + id);
 }
 
+export const putText = (id, todo) => {
+    return api.put("/todos/"+id, todo);
+}
+
+
+
 
 
 

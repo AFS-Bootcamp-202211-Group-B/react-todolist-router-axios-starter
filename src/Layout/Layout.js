@@ -8,8 +8,8 @@ export default function Layout()
 {
     return(
         <div>
-            <Menu
-                        mode="inline"
+            <Menu 
+                        mode="horizontal  "
                         style={{ height: "100%", borderRight: 0 }}
                     >
                         <Menu.Item key="/">
@@ -28,7 +28,6 @@ export default function Layout()
                             </NavLink>
                         </Menu.Item>
                     </Menu>
-            
             <Outlet />
         </div>
     );

@@ -20,6 +20,7 @@ export const todoSlice = createSlice({
     addTodo: (state, action) => {
       state.push({ id: Date.now(), ...action.payload });
     },
+
     toggleTodo: (state, action) => {
       return state.map((todo) =>
         todo.id === action.payload ? { ...todo, done: !todo.done } : todo
@@ -30,10 +31,16 @@ export const todoSlice = createSlice({
     },
     addTodos: (state, action) => {
       return action.payload;
-    }
+    },
+    putTestUpdate: (state, action) => {
+      return state.map((todo) =>
+        todo.id === action.payload.id ? { ...todo, text: action.payload.text}: todo
+      );
+
+    },
   },
 });
 
-export const { addTodo, toggleTodo, deleteTodo,addTodos } = todoSlice.actions;
+export const { addTodo, toggleTodo, deleteTodo,addTodos,putTestUpdate } = todoSlice.actions;
 
 export default todoSlice.reducer;
