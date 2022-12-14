@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "./todoSlice";
 import { postTodos } from "../../api/todos";
+import { Button } from "antd"
+import { RocketOutlined } from '@ant-design/icons'
 
 const TodoGenerator = () => {
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ const TodoGenerator = () => {
         value={todoText}
         onChange={onTextChange}
       />
-      <button onClick={onAdd}>add</button>
+      <Button onClick={onAdd} type="dashed" icon={<RocketOutlined/>} size="small"></Button>
     </>
   );
 };

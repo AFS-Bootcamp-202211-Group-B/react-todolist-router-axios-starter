@@ -10,6 +10,7 @@ const TodoList = () => {
   const todos = useSelector((state) => {
     return state.todoList;
   });
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,11 +18,13 @@ const TodoList = () => {
       dispatch(addTodos(response.data));
     })
   }, [dispatch])
-  
+
   return (
     <>
       <TodoGroup todos={todos} />
       <TodoGenerator />
+      
+      
     </>
   );
 };
