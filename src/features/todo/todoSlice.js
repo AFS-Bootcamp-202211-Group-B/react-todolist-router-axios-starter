@@ -35,7 +35,8 @@ export const todoSlice = createSlice({
     },
     addTodos: (state, action) => {
       return action.payload;
-    }
+    },
+
   },
 });
 
