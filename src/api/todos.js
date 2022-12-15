@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://63996dd416b0fdad773c6c12.mockapi.io",
+    //baseURL: "https://63996dd416b0fdad773c6c12.mockapi.io"
+    baseURL: "http://localhost:8080",
 });
 
 export const getTodos = () => {

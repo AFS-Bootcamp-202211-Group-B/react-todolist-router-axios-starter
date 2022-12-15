@@ -22,11 +22,15 @@ export const todoSlice = createSlice({
     },
     toggleTodo: (state, action) => {
       return state.map((todo) =>
-        todo.id === action.payload ? { ...todo, done: !todo.done } : todo
+        todo.id === action.payload.id ? { ...todo, done: !todo.done } : todo
       );
     },
     deleteTodo: (state, action) => {
-      return state.filter((todo) => todo.id !== action.payload);
+      let index = state.findIndex(element => element.id === action.payload);
+      if (index > -1) { // only splice array when item is found
+        state.splice(index, 1); // 2nd parameter means remove one item only
+      }
+      //return state.filter((todo) => todo.id !== action.payload);
     },
     addTodos: (state,action) => {
       return action.payload;
@@ -37,7 +41,7 @@ export const todoSlice = createSlice({
     updateTodo: (state, action) => {
       console.log(action.payload)
       return state.map((todo) =>
-        todo.id === action.payload.id ? { ...todo, text: action.payload.text } : todo
+        todo.id === action.payload.id ? action.payload : todo
       )
     }
   },

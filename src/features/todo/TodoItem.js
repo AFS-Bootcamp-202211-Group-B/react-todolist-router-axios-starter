@@ -19,10 +19,10 @@ const TodoItem = (props) => {
   const onDelete = (event) => {
     event.stopPropagation();
     //dispatch(deleteTodo(todo.id));
-
+    console.log(todo.id);
     deleteTodoApi(todo.id).then(response =>{
-      dispatch(deleteTodo(response.data.id));
-    });
+      dispatch(deleteTodo(todo.id));
+    }).catch((event) => alert('failed to delete ' + event));
     
   };
 
