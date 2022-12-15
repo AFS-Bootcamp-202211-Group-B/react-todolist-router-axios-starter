@@ -46,9 +46,9 @@ const TodoItem = (props) => {
         <div className="box">
             <Checkbox onChange={onToggle} checked={todo.done}>
                 <span className={todo.done ? "done" : ""}>{todo.text}</span>
-                <CloseOutlined className="times" onClick={onDelete} />
-                &nbsp;
             </Checkbox>
+            <CloseOutlined className="times" onClick={onDelete} />
+            &nbsp;
             <EditOutlined onClick={() => setIsModalOpen(true)} />
             <Modal
                 title="Please enter text to update"
