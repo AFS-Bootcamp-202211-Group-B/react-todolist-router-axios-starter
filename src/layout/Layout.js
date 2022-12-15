@@ -31,7 +31,7 @@ export default function Layout() {
     };
     return (
         <div>
-            <Menu theme="dark" onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
             <div className="content">
                 <Outlet />
             </div>
