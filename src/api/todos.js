@@ -14,7 +14,6 @@ const postTodos = (data) => {
 };
 
 const putTodos = (data) => {
-    console.log(data)
     return api.put(`/todos/${data.id}`, data);
 };
 
