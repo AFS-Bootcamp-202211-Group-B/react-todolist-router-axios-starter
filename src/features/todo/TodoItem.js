@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { toggleTodo, deleteTodo, updateTodosText } from "./todoSlice";
 import { putTodos, deleteTodos } from "../../api/todos";
 import "./TodoItem.css";
-import { Button, Typography } from 'antd';
-import { CloseOutlined } from '@ant-design/icons'
-
+import { Button, Modal,Input } from 'antd';
+import { EditOutlined, CloseOutlined } from '@ant-design/icons'
+import { useState } from "react";
 
 
 const TodoItem = (props) => {
@@ -12,43 +12,62 @@ const TodoItem = (props) => {
   const dispatch = useDispatch();
 
   const onToggle = () => {
-    const content = {...todo, done: !todo.done }
-    putTodos(todo.id, content).then((response) => {
-      // dispatch(toggleTodo(response.data.id));
-      dispatch(toggleTodo(response.data.id));
+    const newTodo = {...todo, done: !todo.done}
+    putTodos(newTodo).then((response) => {
+      dispatch(toggleTodo(response.data));
     })
   };
 
   const onDelete = (event) => {
     event.stopPropagation();
     deleteTodos(todo.id).then((response) => {
-      dispatch(deleteTodo(response.data.id));
+      dispatch(deleteTodo(response.data));
     })
   };
 
-  const onEdit = (event) => {
-    const content = {...todo, text: event}
-    putTodos(todo.id, content).then((response) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newText, setNewText] = useState("");
+
+
+  const handleOk = () => {
+    const newTodo = {...todo, text: newText}
+    putTodos(newTodo).then((response) => {
       dispatch(updateTodosText(response.data));
-    })
+    });
+    setIsModalOpen(false);
   };
 
-  const { Paragraph } = Typography;
+  const handleCancel = () => {
+    setNewText("");
+    setIsModalOpen(false);
+  };
+
+  const onTextChange = (event) => {
+    setNewText(event.target.value);
+  };
+
+  const onEdit = () => {
+    setIsModalOpen(true);
+  }
+
   return (
     <div className="box">
-      <Paragraph
-        editable={{
-          onChange: onEdit,
-          text: todo.text
-        }}
-      >
+   
         <span onClick={onToggle} className={todo.done ? "done" : ""}>
           {todo.text}
         </span>
 
         <Button onClick={onDelete} type="danger" style={{color:'red'}} icon={<CloseOutlined />} size="small"></Button>
         
-      </Paragraph>
+        <Button icon={<EditOutlined />} onClick={onEdit} title="Edit" />
+
+        <Modal title="Update Todo Item" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+          <Input
+            placeholder={todo.text}
+            value={newText}
+            onChange={onTextChange}
+          />
+        </Modal>
     </div>
   );
 };

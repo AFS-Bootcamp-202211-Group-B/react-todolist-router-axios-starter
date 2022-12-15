@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://63996b7a16b0fdad773c200d.mockapi.io"
+    // baseURL: "https://63996b7a16b0fdad773c200d.mockapi.io"
+    baseURL: "http://localhost:8080"
 });
 
 const getTodos = () => {
@@ -12,8 +13,9 @@ const postTodos = (data) => {
     return api.post("/todos", data);
 };
 
-const putTodos = (id, data) => {
-    return api.put(`/todos/${id}`, data);
+const putTodos = (data) => {
+    console.log(data)
+    return api.put(`/todos/${data.id}`, data);
 };
 
 const deleteTodos = (id) => {
