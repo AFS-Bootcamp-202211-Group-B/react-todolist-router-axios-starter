@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState} from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "./todoSlice";
+import {postTodos} from "../../api/todos";
+import { Button, Input } from 'antd';
 
 const TodoGenerator = () => {
   const dispatch = useDispatch();
@@ -12,20 +14,26 @@ const TodoGenerator = () => {
 
   const onAdd = () => {
     const todo = { text: todoText, done: false };
-    dispatch(addTodo(todo));
+    postTodos(todo.text).then((response)=>{
+    dispatch(addTodo(response.data));
+      
+    }, [dispatch]);
+  
     setTodoText("");
   };
 
   return (
     <>
-      <input
+      <Input
         placeholder="input your todo"
-        type="text"
-        name="todo"
         value={todoText}
         onChange={onTextChange}
+        size="middle"
+        style={{ width: 304 }}
       />
-      <button onClick={onAdd}>add</button>
+      <Button onClick={onAdd} type="primary" style={{background:"#2ecc40",marginLeft: "20px"}}>add</Button>
+
+
     </>
   );
 };
