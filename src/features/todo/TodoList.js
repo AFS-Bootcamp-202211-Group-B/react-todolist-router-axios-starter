@@ -1,13 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TodoGenerator from "./TodoGenerator";
 import TodoGroup from "./TodoGroup";
+import { getAllTodos } from "../../api/todos";
+import { useEffect } from "react";
+import { setTodo } from "./todoSlice";
 
 const TodoList = () => {
-  // get the data from store
-  const todos = useSelector((state) => {
-    return state.todoList;
-  });
-
+  const todos = useSelector(state => state.todoList)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    getAllTodos()
+      .then(response => {
+        dispatch(setTodo(response.data));
+      })
+      .catch(e => console.log(e))
+  }, [])
   return (
     <>
       <TodoGroup todos={todos} />
